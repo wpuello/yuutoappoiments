@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlanSeeder implements CommandLineRunner {
 
+
     @Autowired
     private final PlanService planService;
 
