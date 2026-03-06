@@ -2,6 +2,7 @@ package com.yuutoap.Appoiments.model.appointments;
 
 
 import com.yuutoap.Appoiments.enums.AppointmentStatus;
+import com.yuutoap.Appoiments.model.convenios.Convenio;
 import com.yuutoap.Appoiments.model.doctors.Doctor;
 import com.yuutoap.Appoiments.model.parameters.Tenant;
 import com.yuutoap.Appoiments.model.patients.Patient;
@@ -43,8 +44,9 @@ public class Appointment {
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
-    @Column(nullable = false)
-    private String entidadRemitente;
+    @ManyToOne
+    @JoinColumn(name = "convenio_id")
+    private Convenio convenio;
 
     @Column(name = "appoimentDate", nullable = false)
     private LocalDate appoimentDate;
