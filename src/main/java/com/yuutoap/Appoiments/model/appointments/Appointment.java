@@ -7,7 +7,10 @@ import com.yuutoap.Appoiments.model.parameters.Tenant;
 import com.yuutoap.Appoiments.model.patients.Patient;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -39,6 +42,12 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
+
+    @Column(nullable = false)
+    private String entidadRemitente;
+
+    @Column(name = "appoimentDate", nullable = false)
+    private LocalDate appoimentDate;
 
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;

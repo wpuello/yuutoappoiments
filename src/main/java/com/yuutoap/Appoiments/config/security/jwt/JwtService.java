@@ -50,7 +50,6 @@ public class JwtService {
     }
 
     public String extractUsername(String token) {
-
         return extractClaims(token).getSubject();
     }
 
@@ -71,4 +70,17 @@ public class JwtService {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
+    public String extractTenant(String token){
+        return extractClaims(token).get("tenant", String.class);
+    }
+
+    public String extractUserId(String token){
+        return extractClaims(token).get("userId", String.class);
+    }
+
+    public Object extractRoles(String token){
+        return extractClaims(token).get("roles");
+    }
+
 }

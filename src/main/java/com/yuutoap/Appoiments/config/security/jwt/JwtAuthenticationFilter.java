@@ -4,6 +4,7 @@ import com.yuutoap.Appoiments.service.security.contract.CustomUserDetailsService
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import lombok.RequiredArgsConstructor;
+import com.yuutoap.Appoiments.config.tenant.TenantContext;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -26,6 +27,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
+        try {
         final String authHeader = request.getHeader("Authorization");
 
         if(authHeader == null || !authHeader.startsWith("Bearer ")){
@@ -35,6 +37,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String token = authHeader.substring(7);
         String username = jwtService.extractUsername(token);
+        String tenant = jwtService.extractTenant(token); //Extraigo del Tenant del JWT
+        TenantContext.setTenant(tenant); //Agregar el Tenant a el Contexto
 
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
 
@@ -58,5 +62,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request,response);
+
+        } finally {
+            TenantContext.clear();
+        }
     }
 }

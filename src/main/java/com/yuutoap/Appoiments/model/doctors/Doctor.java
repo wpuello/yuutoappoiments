@@ -1,7 +1,7 @@
 package com.yuutoap.Appoiments.model.doctors;
 
+import com.yuutoap.Appoiments.model.consultorios.Consultorio;
 import com.yuutoap.Appoiments.model.parameters.Tenant;
-import com.yuutoap.Appoiments.model.security.User;
 import com.yuutoap.Appoiments.model.specialties.Specialty;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,9 +24,21 @@ public class Doctor {
     @JoinColumn(name = "tenant_id")
     private Tenant tenant;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "consultorio_id", nullable = false)
+    private Consultorio consultorio;
+
+    @Column(nullable = false)
+    private String identification;
+
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
+    private String email;
 
     private String licenseNumber;
 
