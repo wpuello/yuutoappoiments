@@ -1,4 +1,4 @@
-package com.yuutoap.Appoiments.dto.doctors;
+package com.yuutoap.Appoiments.dto.professionals;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorRequestDTO {
+public class ProfessionalRequestDTO {
 
     @NotBlank(message = "Consultorio is required")
     private UUID consultorioId;

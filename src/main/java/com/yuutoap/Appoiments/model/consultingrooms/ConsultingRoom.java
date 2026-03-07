@@ -1,5 +1,6 @@
-package com.yuutoap.Appoiments.model.consultorios;
+package com.yuutoap.Appoiments.model.consultingrooms;
 
+import com.yuutoap.Appoiments.model.branches.Branch;
 import com.yuutoap.Appoiments.model.parameters.Tenant;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,8 +12,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "consultorios")
-public class Consultorio {
+@Table(name = "consultingrooms")
+public class ConsultingRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,6 +22,10 @@ public class Consultorio {
     @ManyToOne
     @JoinColumn(name = "tenant_id", nullable = false)
     private Tenant tenant;
+
+    @ManyToOne
+    @JoinColumn(name = "branch_id", nullable = false)
+    private Branch branch;
 
     @Column(nullable = false)
     private String name;

@@ -1,9 +1,10 @@
-package com.yuutoap.Appoiments.model.convenios;
+package com.yuutoap.Appoiments.model.agreements;
 
 import com.yuutoap.Appoiments.model.parameters.Tenant;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -13,12 +14,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Table(
-        name = "convenios",
+        name = "agreements",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"tenant_id","name"})
         }
 )
-public class Convenio {
+public class Agreement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

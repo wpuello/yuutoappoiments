@@ -37,8 +37,8 @@ public class RoleSeeder implements CommandLineRunner {
                         .build(),
 
                 Role.builder()
-                        .name("DOCTOR")
-                        .description("Médico del consultorio")
+                        .name("PROFESSIONAL")
+                        .description("Profesional del consultorio")
                         .active(true)
                         .build(),
 

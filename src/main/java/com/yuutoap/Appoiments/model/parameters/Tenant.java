@@ -2,7 +2,6 @@ package com.yuutoap.Appoiments.model.parameters;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -12,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "tenants")
+@Table(name = "tenants") //Company Data Name
 public class Tenant {
 
     @Id

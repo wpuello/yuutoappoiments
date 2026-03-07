@@ -24,7 +24,7 @@ public class Plan {
 
     private BigDecimal price;
 
-    private Integer maxDoctors;
+    private Integer maxProfessinals;
 
     private Integer maxUsers;
 

@@ -2,16 +2,16 @@ package com.yuutoap.Appoiments.model.appointments;
 
 
 import com.yuutoap.Appoiments.enums.AppointmentStatus;
-import com.yuutoap.Appoiments.model.convenios.Convenio;
-import com.yuutoap.Appoiments.model.doctors.Doctor;
+import com.yuutoap.Appoiments.model.agreements.Agreement;
+import com.yuutoap.Appoiments.model.professionals.Professional;
 import com.yuutoap.Appoiments.model.parameters.Tenant;
 import com.yuutoap.Appoiments.model.patients.Patient;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -23,7 +23,7 @@ import java.util.UUID;
 @Table(
         name = "appointments",
         indexes = {
-                @Index(name = "idx_doctor_start", columnList = "doctor_id,start_time")
+                @Index(name = "idx_professional_start", columnList = "professional_id,start_time")
         }
 )
 public class Appointment {
@@ -37,16 +37,16 @@ public class Appointment {
     private Tenant tenant;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id", nullable = false)
-    private Doctor doctor;
+    @JoinColumn(name = "professional_id", nullable = false)
+    private Professional professional;
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "convenio_id")
-    private Convenio convenio;
+    @JoinColumn(name = "agreement_id")
+    private Agreement agreement;
 
     @Column(name = "appoimentDate", nullable = false)
     private LocalDate appoimentDate;
@@ -59,6 +59,18 @@ public class Appointment {
 
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
+
+    @Column(name = "moderating_fee", precision = 10, scale = 2)
+    private BigDecimal moderatingFee;
+
+    @Column(name = "contact_phone")
+    private String contactPhone;
+
+    @Column(name = "contact_by_phone")
+    private Boolean contactByPhone;
+
+    @Column(name = "contact_by_whatsapp")
+    private Boolean contactByWhatsapp;
 
     private String notes;
 

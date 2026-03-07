@@ -1,6 +1,6 @@
-package com.yuutoap.Appoiments.model.doctors.schedules;
+package com.yuutoap.Appoiments.model.professionals.schedules;
 
-import com.yuutoap.Appoiments.model.doctors.Doctor;
+import com.yuutoap.Appoiments.model.professionals.Professional;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.DayOfWeek;
@@ -13,16 +13,16 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "doctor_schedules")
-public class DoctorSchedules {
+@Table(name = "professional_schedules")
+public class ProfessionalSchedules {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
+    @JoinColumn(name = "professional_id")
+    private Professional professional;
 
     @Enumerated(EnumType.STRING)
     private DayOfWeek dayOfWeek;

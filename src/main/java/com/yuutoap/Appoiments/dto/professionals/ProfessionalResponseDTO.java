@@ -1,4 +1,4 @@
-package com.yuutoap.Appoiments.dto.doctors;
+package com.yuutoap.Appoiments.dto.professionals;
 
 import com.yuutoap.Appoiments.dto.specialties.SpecialtyDTO;
 import lombok.*;
@@ -9,7 +9,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorResponseDTO {
+public class ProfessionalResponseDTO {
 
     private UUID id;
     private UUID consultorioId;

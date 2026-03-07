@@ -9,6 +9,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String hola() {
-        return "¡API de Yuuto Doctors Appointments funcionando con éxito!";
+        return "¡API de Yuuto Professionals Appointments funcionando con éxito!";
     }
 }

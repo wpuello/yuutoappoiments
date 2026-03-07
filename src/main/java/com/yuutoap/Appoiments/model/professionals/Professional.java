@@ -1,6 +1,6 @@
-package com.yuutoap.Appoiments.model.doctors;
+package com.yuutoap.Appoiments.model.professionals;
 
-import com.yuutoap.Appoiments.model.consultorios.Consultorio;
+import com.yuutoap.Appoiments.model.consultingrooms.ConsultingRoom;
 import com.yuutoap.Appoiments.model.parameters.Tenant;
 import com.yuutoap.Appoiments.model.specialties.Specialty;
 import jakarta.persistence.*;
@@ -14,8 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "doctors")
-public class Doctor {
+@Table(name = "professionals")
+public class Professional {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -25,8 +25,8 @@ public class Doctor {
     private Tenant tenant;
 
     @ManyToOne
-    @JoinColumn(name = "consultorio_id", nullable = false)
-    private Consultorio consultorio;
+    @JoinColumn(name = "consultingroom_id", nullable = false)
+    private ConsultingRoom consultingRoom;
 
     @Column(nullable = false)
     private String identification;
@@ -48,8 +48,8 @@ public class Doctor {
 
     @ManyToMany
     @JoinTable(
-            name = "doctor_specialties",
-            joinColumns = @JoinColumn(name = "doctor_id"),
+            name = "professional_specialties",
+            joinColumns = @JoinColumn(name = "professional_id"),
             inverseJoinColumns = @JoinColumn(name = "specialty_id")
     )
     private Set<Specialty> specialties;
