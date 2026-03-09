@@ -41,8 +41,10 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     public ProfessionalResponseDTO findProfessionalById(UUID id) {
-        Professional professional = professionalRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Doctor no Encontrado"));
+        String tenantSlug = TenantContext.getTenant();
+        Professional professional = professionalRepository
+                .findByIdAndTenantSlug(id, tenantSlug)
+                .orElseThrow(() -> new RuntimeException("Profesional no encontrado"));
         return doctorMappers.mapToDTO(professional);
     }
 
@@ -84,7 +86,9 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     @Override
     public ProfessionalResponseDTO updateProfessional(UUID id, ProfessionalRequestDTO request) {
 
-        Professional professional = professionalRepository.findById(id)
+        String tenantSlug = TenantContext.getTenant();
+
+        Professional professional = professionalRepository.findByIdAndTenantSlug(id, tenantSlug)
                 .orElseThrow(() -> new RuntimeException("Profesional no Encontrado"));
 
         Set<Specialty> specialties = specialtyRepository
@@ -108,7 +112,10 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     public void deleteProfessional(UUID id) {
-        professionalRepository.deleteById(id);
+
+        String tenantSlug = TenantContext.getTenant();
+        professionalRepository.deleteByIdAndTenantSlug(id, tenantSlug);
+
     }
 
 

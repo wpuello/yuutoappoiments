@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/professionals")
+@RequestMapping("api/v1/{tenant}/professionals")
 @RequiredArgsConstructor
 public class ProfessionalController {
 
     private final ProfessionalService professionalService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ProfessionalResponseDTO>> findProfessionals(){
         return ResponseEntity.ok(professionalService.findProfessionals());
     }

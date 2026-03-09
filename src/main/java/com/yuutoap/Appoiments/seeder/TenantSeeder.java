@@ -36,6 +36,7 @@ public class TenantSeeder implements CommandLineRunner{
                 .legalRepresentativeName("Super Administrator")
                 .legalRepresentativeId("9299215")
                 .slug("yuuto-system")
+                .finalUrlClient(null)
                 .email("sistemas@yuuto.com.co")
                 .phone("0000000000")
                 .address("Parque Heredia Cartagena")

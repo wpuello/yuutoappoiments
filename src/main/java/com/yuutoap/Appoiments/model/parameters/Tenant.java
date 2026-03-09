@@ -33,6 +33,9 @@ public class Tenant {
     @Column(nullable = false, unique = true)
     private String slug; //Para Identificar El Tenant
 
+    @Column(nullable = true, unique = true)
+    private String finalUrlClient; //Url Final del Cliente
+
     @Column(nullable = false)
     private String email;
 
