@@ -6,6 +6,7 @@ import com.yuutoap.Appoiments.model.agreements.Agreement;
 import com.yuutoap.Appoiments.model.professionals.Professional;
 import com.yuutoap.Appoiments.model.parameters.Tenant;
 import com.yuutoap.Appoiments.model.patients.Patient;
+import com.yuutoap.Appoiments.model.specialties.Specialty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +24,11 @@ import java.util.UUID;
 @Table(
         name = "appointments",
         indexes = {
-                @Index(name = "idx_professional_start", columnList = "professional_id,start_time")
+                @Index(name = "idx_professional_start", columnList = "professional_id,start_time"),
+                @Index(name = "idx_authorization_number", columnList = "authorization_number"),
+                @Index(name = "idx_patient", columnList = "patient_id"),
+                @Index(name = "idx_agreement_date", columnList = "agreement_id,appointment_date"),
+                @Index(name = "idx_specialty_date", columnList = "specialty_id,appointment_date")
         }
 )
 public class Appointment {
@@ -36,9 +41,6 @@ public class Appointment {
     @JoinColumn(name = "tenant_id", nullable = false)
     private Tenant tenant;
 
-    @ManyToOne
-    @JoinColumn(name = "professional_id", nullable = false)
-    private Professional professional;
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
@@ -48,8 +50,19 @@ public class Appointment {
     @JoinColumn(name = "agreement_id")
     private Agreement agreement;
 
-    @Column(name = "appoimentDate", nullable = false)
-    private LocalDate appoimentDate;
+    @ManyToOne
+    @JoinColumn(name="specialty_id", nullable=false)
+    private Specialty specialty;
+
+    @Column(name = "authorization_number", length = 50)
+    private String authorizationNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "professional_id", nullable = false)
+    private Professional professional;
+
+    @Column(name = "appointment_date", nullable = false)
+    private LocalDate appointmentDate;
 
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
@@ -60,17 +73,11 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 
-    @Column(name = "moderating_fee", precision = 10, scale = 2)
+    @Column(name = "moderating_fee", precision = 10, scale = 2, nullable = true)
     private BigDecimal moderatingFee;
 
     @Column(name = "contact_phone")
     private String contactPhone;
-
-    @Column(name = "contact_by_phone")
-    private Boolean contactByPhone;
-
-    @Column(name = "contact_by_whatsapp")
-    private Boolean contactByWhatsapp;
 
     private String notes;
 

@@ -2,7 +2,9 @@ package com.yuutoap.Appoiments.seeder;
 
 import com.yuutoap.Appoiments.model.parameters.Plan;
 import com.yuutoap.Appoiments.model.parameters.Tenant;
+import com.yuutoap.Appoiments.model.parameters.TenantParameters;
 import com.yuutoap.Appoiments.service.parameters.contract.PlanService;
+import com.yuutoap.Appoiments.service.parameters.contract.TenantParametersService;
 import com.yuutoap.Appoiments.service.parameters.contract.TenantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +18,7 @@ public class TenantSeeder implements CommandLineRunner{
 
     private final TenantService tenantService;
     private final PlanService planService;
+    private final TenantParametersService tenantParametersService;
 
     @Override
     public void run(String... args) {
@@ -45,6 +48,19 @@ public class TenantSeeder implements CommandLineRunner{
                 .build();
 
         tenantService.save(tenant);
+
+       TenantParameters parameters = TenantParameters.builder()
+                .tenant(tenant)
+                .sendEmailNotifications(true)
+                .emailNotifications("sistemas@yuuto.com.co")
+                .sendWhatsappNotifications(false)
+                .whatsappNumberNotifications("+573001234567")
+                .reminderHoursBefore(3)
+                .cancelationHoursBefore(6)
+                .allowOnlineBooking(true)
+                .build();
+
+        tenantParametersService.save(parameters);
 
         System.out.println("Tenant principal creado correctamente");
     }
