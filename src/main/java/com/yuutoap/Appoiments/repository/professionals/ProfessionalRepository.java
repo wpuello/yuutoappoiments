@@ -9,6 +9,9 @@ import java.util.UUID;
 
 public interface ProfessionalRepository extends JpaRepository<Professional, UUID> {
     List<Professional> findByTenantSlug(String tenant);
-    Optional<Professional> findByIdAndTenantSlug(UUID id, String tenantSlug);
-    void deleteByIdAndTenantSlug(UUID id, String tenantSlug);
+    Optional<Professional> findByIdAndTenantId(UUID id, UUID tenantId);
+    void deleteByIdAndTenantId(UUID id, UUID tenantId);
+    boolean existsByIdentificationAndTenantId(String identification, UUID tenantId);
+    boolean existsByIdentificationAndTenantIdAndIdNot(String identification, UUID tenantId, UUID id
+    );
 }

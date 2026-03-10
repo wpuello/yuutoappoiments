@@ -12,5 +12,5 @@ public interface ConsultingRoomRepository extends JpaRepository<ConsultingRoom, 
     List<ConsultingRoom> findByTenantSlug(String slug);
     Optional<ConsultingRoom> findByIdAndTenantSlug(UUID id, String slug);
     List<ConsultingRoom> findByTenantSlugAndActiveTrue(String slug);
-
+    Optional<ConsultingRoom> findByIdAndTenantId(UUID id, UUID tenantId);
 }

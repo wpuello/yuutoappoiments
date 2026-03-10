@@ -46,4 +46,12 @@ public class TenantParameters {
     @Column(name = "allow_online_booking")
     private Boolean allowOnlineBooking;
 
+    //Nro de Veces que un Paciente puede reprogamar una cita
+    @Column(nullable = false, unique = false)
+    Integer patientRescheduleCount;
+
+    //Abrir el sistema para integrar con otros sistemas
+    @Column(nullable = false, unique = false)
+    Boolean externalIntegrations;
+
 }

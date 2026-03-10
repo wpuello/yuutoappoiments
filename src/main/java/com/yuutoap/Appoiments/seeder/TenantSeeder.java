@@ -59,6 +59,8 @@ public class TenantSeeder implements CommandLineRunner{
                 .reminderHoursBefore(3)
                 .cancelationHoursBefore(6)
                 .allowOnlineBooking(true)
+                .patientRescheduleCount(2)
+                .externalIntegrations(false)
                 .build();
 
         tenantParametersService.save(parameters);

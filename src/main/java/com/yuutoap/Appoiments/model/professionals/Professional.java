@@ -14,7 +14,15 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "professionals")
+@Table(
+        name = "professionals",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_professional_tenant_identification",
+                        columnNames = {"tenant_id", "identification"}
+                )
+        }
+)
 public class Professional {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

@@ -1,9 +1,9 @@
 package com.yuutoap.Appoiments.dto.professionals;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
 import lombok.*;
+
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -13,10 +13,11 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ProfessionalRequestDTO {
 
-    @NotBlank(message = "Consultorio is required")
+    @NotNull(message = "Consultorio is required")
     private UUID consultorioId;
 
-    @NotBlank(message = "Identification is required")
+    @NotBlank(message = "La identificación es obligatoria")
+    @Pattern(regexp = "^[0-9]+$", message = "La identificación debe ser numérica")
     private String identification;
 
     @NotBlank(message = "First name is required")
@@ -26,7 +27,7 @@ public class ProfessionalRequestDTO {
     private String lastName;
 
     @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email format")
+    @Email(message = "Formato de Email Invalido")
     private String email;
 
     private String licenseNumber;
@@ -35,7 +36,7 @@ public class ProfessionalRequestDTO {
 
     private String bio;
 
-    @NotEmpty(message = "At least one specialty is required")
-    private Set<UUID> specialtyIds;
+    @NotEmpty(message = "AL menos una especialidad es Requerida")
+    private List<UUID> specialtyIds;
 
 }
