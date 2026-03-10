@@ -161,11 +161,6 @@ public class ProfessionalServiceImpl implements ProfessionalService {
                         id
                 );
 
-        System.out.println("IDENTIFICATION: " + request.getIdentification());
-        System.out.println("TENANT: " + tenant.getId());
-        System.out.println("ID: " + id);
-        System.out.println("EXISTS: " + exists);
-
         if (exists) {
             throw new GlobalConflictException(
                     "Ya existe otro profesional con esta misma identificación en este tenant"
